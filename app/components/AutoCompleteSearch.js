@@ -9,7 +9,8 @@ const suggestionsObj = {
     const inputLength = inputValue.length;
     return inputLength === 0 ? [] : list.filter(airport =>
       // return if either name or IATA code matches an airport in list
-      (airport.name.toLowerCase().slice(0, inputLength) === inputValue) || (airport.code.toLowerCase().slice(0, inputLength) === inputValue)
+      (airport.name.toLowerCase().slice(0, inputLength) === inputValue) || (airport.code.toLowerCase().slice(0, inputLength) === inputValue) ||
+      (airport.city.toLowerCase().slice(0, inputLength) === inputValue)
     );
   },
   getSuggestionValue: suggestion => suggestion.code,

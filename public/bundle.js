@@ -23096,7 +23096,7 @@
 	    return inputLength === 0 ? [] : list.filter(function (airport) {
 	      return (
 	        // return if either name or IATA code matches an airport in list
-	        airport.name.toLowerCase().slice(0, inputLength) === inputValue || airport.code.toLowerCase().slice(0, inputLength) === inputValue
+	        airport.name.toLowerCase().slice(0, inputLength) === inputValue || airport.code.toLowerCase().slice(0, inputLength) === inputValue || airport.city.toLowerCase().slice(0, inputLength) === inputValue
 	      );
 	    });
 	  },
@@ -27046,6 +27046,7 @@
 	        }).then(function (res) {
 	          bObj = res.data;
 	        }).then(function () {
+	          console.log(aObj, bObj);
 	          flightPlanCoordinates.push({ lat: aObj.lat, lng: aObj.lng }, { lat: bObj.lat, lng: bObj.lng });
 	        });
 	      }

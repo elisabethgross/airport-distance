@@ -27,6 +27,7 @@ export class Container extends Component {
       }).then(res => {
         bObj = res.data
       }).then(() => {
+        console.log(aObj, bObj)
         flightPlanCoordinates.push({lat: aObj.lat, lng: aObj.lng}, {lat: bObj.lat, lng: bObj.lng})
       });
     }
