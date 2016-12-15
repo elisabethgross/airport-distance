@@ -12,16 +12,18 @@ const suggestionsObj = {
       (airport.name.toLowerCase().slice(0, inputLength) === inputValue) || (airport.code.toLowerCase().slice(0, inputLength) === inputValue)
     );
   },
-  getSuggestionValue: suggestion => suggestion.name,
-  renderSuggestion: suggestion => (
+  getSuggestionValue: suggestion => suggestion.code,
+  renderSuggestion: suggestion => {
+
+    return (
     <div>
       {suggestion.name}
     </div>
-  )
+  )}
 }
 
 export default class AutoCompleteSearch extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       value: '',
@@ -29,15 +31,15 @@ export default class AutoCompleteSearch extends Component {
     }
   }
 
+  // get the list of us airports
   componentDidMount() {
-    // get the list of us airports
     axios.get('/api/airports')
       .then(airports => this.setState({
         airports: airports.data
       }));
   }
 
-  onChange = (event, { newValue }) => {
+  onChange = (event, {newValue}) => {
     this.setState({
       value: newValue
     });
@@ -64,20 +66,19 @@ export default class AutoCompleteSearch extends Component {
     const inputProps = {
       placeholder: this.props.placeholder,
       value,
-      onChange: this.onChange
+      onChange: this.onChange,
+      name: this.props.name
     };
 
     return (
-      <div>
-         <Autosuggest
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={suggestionsObj.getSuggestionValue}
-          renderSuggestion={suggestionsObj.renderSuggestion}
-          inputProps={inputProps}
-          />
-      </div>
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        getSuggestionValue={suggestionsObj.getSuggestionValue}
+        renderSuggestion={suggestionsObj.renderSuggestion}
+        inputProps={inputProps}
+        />
     );
   }
 }
