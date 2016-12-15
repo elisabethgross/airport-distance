@@ -52,13 +52,13 @@
 	
 	var _reactDom = __webpack_require__(32);
 	
-	var _AppContainer = __webpack_require__(178);
+	var _App = __webpack_require__(252);
 	
-	var _AppContainer2 = _interopRequireDefault(_AppContainer);
+	var _App2 = _interopRequireDefault(_App);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	(0, _reactDom.render)(_react2.default.createElement(_AppContainer2.default, null), document.getElementById('main'));
+	(0, _reactDom.render)(_react2.default.createElement(_App2.default, null), document.getElementById('main'));
 
 /***/ },
 /* 1 */
@@ -21468,81 +21468,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 178 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _axios = __webpack_require__(179);
-	
-	var _axios2 = _interopRequireDefault(_axios);
-	
-	var _AirportA = __webpack_require__(204);
-	
-	var _AirportA2 = _interopRequireDefault(_AirportA);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	// import AirportB from '../components/AirportB';
-	
-	var AppContainer = function (_Component) {
-	  _inherits(AppContainer, _Component);
-	
-	  function AppContainer(props) {
-	    _classCallCheck(this, AppContainer);
-	
-	    var _this = _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).call(this, props));
-	
-	    _this.state = {
-	      airports: []
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(AppContainer, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      _axios2.default.get('/api/airports').then(function (airports) {
-	        return _this2.setState({
-	          airports: airports.data
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_AirportA2.default, { airports: this.state.airports })
-	      );
-	    }
-	  }]);
-	
-	  return AppContainer;
-	}(_react.Component);
-	
-	exports.default = AppContainer;
-
-/***/ },
+/* 178 */,
 /* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -23032,151 +22958,7 @@
 
 
 /***/ },
-/* 204 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _axios = __webpack_require__(179);
-	
-	var _axios2 = _interopRequireDefault(_axios);
-	
-	var _reactAutosuggest = __webpack_require__(205);
-	
-	var _reactAutosuggest2 = _interopRequireDefault(_reactAutosuggest);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	// let theAirports = [];
-	
-	// axios.get('/api/airports')
-	//   .then(airports => {
-	//     console.log('did it')
-	//     theAirports = airports.data;
-	//   });
-	
-	var suggestionsObj = {
-	  getSuggestions: function getSuggestions(value, list) {
-	    var inputValue = value.trim().toLowerCase();
-	    var inputLength = inputValue.length;
-	    return inputLength === 0 ? [] : list.filter(function (airport) {
-	      return airport.name.toLowerCase().slice(0, inputLength) === inputValue || airport.code.toLowerCase().slice(0, inputLength) === inputValue;
-	    });
-	  },
-	  getSuggestionValue: function getSuggestionValue(suggestion) {
-	    return suggestion.name;
-	  },
-	  renderSuggestion: function renderSuggestion(suggestion) {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      suggestion.name
-	    );
-	  }
-	};
-	
-	var AirportA = function (_Component) {
-	  _inherits(AirportA, _Component);
-	
-	  function AirportA(props) {
-	    _classCallCheck(this, AirportA);
-	
-	    var _this = _possibleConstructorReturn(this, (AirportA.__proto__ || Object.getPrototypeOf(AirportA)).call(this, props));
-	
-	    _this.onChange = function (event, _ref) {
-	      var newValue = _ref.newValue;
-	
-	      _this.setState({
-	        value: newValue
-	      });
-	    };
-	
-	    _this.onSuggestionsFetchRequested = function (_ref2) {
-	      var value = _ref2.value;
-	
-	      if (_this.state.airports) {
-	        _this.setState({
-	          suggestions: suggestionsObj.getSuggestions(value, _this.state.airports)
-	        });
-	      }
-	    };
-	
-	    _this.onSuggestionsClearRequested = function () {
-	      _this.setState({
-	        suggestions: []
-	      });
-	    };
-	
-	    _this.state = {
-	      value: '',
-	      suggestions: []
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(AirportA, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      _axios2.default.get('/api/airports').then(function (airports) {
-	        return _this2.setState({
-	          airports: airports.data
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _state = this.state,
-	          value = _state.value,
-	          suggestions = _state.suggestions;
-	
-	      // Autosuggest will pass through all these props to the input element.
-	
-	      var inputProps = {
-	        placeholder: 'Type an airport',
-	        value: value,
-	        onChange: this.onChange
-	      };
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_reactAutosuggest2.default, {
-	          suggestions: suggestions,
-	          onSuggestionsFetchRequested: this.onSuggestionsFetchRequested,
-	          onSuggestionsClearRequested: this.onSuggestionsClearRequested,
-	          getSuggestionValue: suggestionsObj.getSuggestionValue,
-	          renderSuggestion: suggestionsObj.renderSuggestion,
-	          inputProps: inputProps
-	        })
-	      );
-	    }
-	  }]);
-	
-	  return AirportA;
-	}(_react.Component);
-	
-	exports.default = AirportA;
-
-/***/ },
+/* 204 */,
 /* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26945,6 +26727,205 @@
 	  onClick: _react.PropTypes.func
 	};
 	exports.default = Item;
+
+/***/ },
+/* 249 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(179);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _reactAutosuggest = __webpack_require__(205);
+	
+	var _reactAutosuggest2 = _interopRequireDefault(_reactAutosuggest);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// autosuggest methods
+	var suggestionsObj = {
+	  getSuggestions: function getSuggestions(value, list) {
+	    var inputValue = value.trim().toLowerCase();
+	    var inputLength = inputValue.length;
+	    return inputLength === 0 ? [] : list.filter(function (airport) {
+	      return (
+	        // return if either name or IATA code matches an airport in list
+	        airport.name.toLowerCase().slice(0, inputLength) === inputValue || airport.code.toLowerCase().slice(0, inputLength) === inputValue
+	      );
+	    });
+	  },
+	  getSuggestionValue: function getSuggestionValue(suggestion) {
+	    return suggestion.name;
+	  },
+	  renderSuggestion: function renderSuggestion(suggestion) {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      suggestion.name
+	    );
+	  }
+	};
+	
+	var AutoCompleteSearch = function (_Component) {
+	  _inherits(AutoCompleteSearch, _Component);
+	
+	  function AutoCompleteSearch(props) {
+	    _classCallCheck(this, AutoCompleteSearch);
+	
+	    var _this = _possibleConstructorReturn(this, (AutoCompleteSearch.__proto__ || Object.getPrototypeOf(AutoCompleteSearch)).call(this, props));
+	
+	    _this.onChange = function (event, _ref) {
+	      var newValue = _ref.newValue;
+	
+	      _this.setState({
+	        value: newValue
+	      });
+	    };
+	
+	    _this.onSuggestionsFetchRequested = function (_ref2) {
+	      var value = _ref2.value;
+	
+	      if (_this.state.airports) {
+	        _this.setState({
+	          // pass the airports as the list to autosuggest from
+	          suggestions: suggestionsObj.getSuggestions(value, _this.state.airports)
+	        });
+	      }
+	    };
+	
+	    _this.onSuggestionsClearRequested = function () {
+	      _this.setState({
+	        suggestions: []
+	      });
+	    };
+	
+	    _this.state = {
+	      value: '',
+	      suggestions: []
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(AutoCompleteSearch, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      // get the list of us airports
+	      _axios2.default.get('/api/airports').then(function (airports) {
+	        return _this2.setState({
+	          airports: airports.data
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _state = this.state,
+	          value = _state.value,
+	          suggestions = _state.suggestions;
+	
+	
+	      var inputProps = {
+	        placeholder: this.props.placeholder,
+	        value: value,
+	        onChange: this.onChange
+	      };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_reactAutosuggest2.default, {
+	          suggestions: suggestions,
+	          onSuggestionsFetchRequested: this.onSuggestionsFetchRequested,
+	          onSuggestionsClearRequested: this.onSuggestionsClearRequested,
+	          getSuggestionValue: suggestionsObj.getSuggestionValue,
+	          renderSuggestion: suggestionsObj.renderSuggestion,
+	          inputProps: inputProps
+	        })
+	      );
+	    }
+	  }]);
+	
+	  return AutoCompleteSearch;
+	}(_react.Component);
+	
+	exports.default = AutoCompleteSearch;
+
+/***/ },
+/* 250 */,
+/* 251 */,
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _AutoCompleteSearch = __webpack_require__(249);
+	
+	var _AutoCompleteSearch2 = _interopRequireDefault(_AutoCompleteSearch);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AppContainer = function (_Component) {
+	  _inherits(AppContainer, _Component);
+	
+	  function AppContainer() {
+	    _classCallCheck(this, AppContainer);
+	
+	    return _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).apply(this, arguments));
+	  }
+	
+	  _createClass(AppContainer, [{
+	    key: 'render',
+	    value: function render() {
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_AutoCompleteSearch2.default, { placeholder: 'Type airportA' }),
+	        _react2.default.createElement(_AutoCompleteSearch2.default, { placeholder: 'Type airportB' })
+	      );
+	    }
+	  }]);
+	
+	  return AppContainer;
+	}(_react.Component);
+	
+	exports.default = AppContainer;
 
 /***/ }
 /******/ ]);
