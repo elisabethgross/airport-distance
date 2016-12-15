@@ -11,7 +11,7 @@ router.get('/airports', function (req, res) {
       var usAirports = airports.filter(elem => {
         return elem.country === 'United States';
       });
-      res.json(usAirports);
+      res.send(usAirports);
     });
 });
 
