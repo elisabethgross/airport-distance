@@ -3,7 +3,9 @@ var router = express.Router();
 var path, { resolve } = require('path');
 module.exports = router;
 
+// serve static files
 router.use(express.static(resolve(__dirname, '..', 'public')));
+
 router.use('/api', require('./api'));
 
 router.get('/*', function (req, res) {

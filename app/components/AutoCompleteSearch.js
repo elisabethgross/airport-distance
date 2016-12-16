@@ -15,12 +15,12 @@ const suggestionsObj = {
   },
   getSuggestionValue: suggestion => suggestion.code,
   renderSuggestion: suggestion => {
-
     return (
-    <div>
-      {suggestion.name}
-    </div>
-  )}
+      <div>
+        {suggestion.name}
+      </div>
+    );
+  }
 }
 
 export default class AutoCompleteSearch extends Component {
@@ -28,7 +28,8 @@ export default class AutoCompleteSearch extends Component {
     super(props);
     this.state = {
       value: '',
-      suggestions: []
+      suggestions: [],
+      airports: []
     }
   }
 

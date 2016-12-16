@@ -13,7 +13,6 @@ export default class AppContainer extends Component {
       airportBCode: null
     };
   }
-
   // on submit, make a call to the api to get distance, put it on state
   handleSubmit = (e) => {
     e.preventDefault();
@@ -29,9 +28,7 @@ export default class AppContainer extends Component {
           airportBCode: airportB,
           distance: res.data
         })
-      }
-      );
-
+      });
   }
 
   render() {
