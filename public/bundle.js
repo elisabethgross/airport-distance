@@ -21491,7 +21491,7 @@
 	
 	var _AutoCompleteSearch2 = _interopRequireDefault(_AutoCompleteSearch);
 	
-	var _Map = __webpack_require__(249);
+	var _Map = __webpack_require__(250);
 	
 	var _Map2 = _interopRequireDefault(_Map);
 	
@@ -21534,7 +21534,6 @@
 	    };
 	    return _this;
 	  }
-	
 	  // on submit, make a call to the api to get distance, put it on state
 	
 	
@@ -23104,7 +23103,6 @@
 	    return suggestion.code;
 	  },
 	  renderSuggestion: function renderSuggestion(suggestion) {
-	
 	    return _react2.default.createElement(
 	      'div',
 	      null,
@@ -23148,7 +23146,8 @@
 	
 	    _this.state = {
 	      value: '',
-	      suggestions: []
+	      suggestions: [],
+	      airports: []
 	    };
 	    return _this;
 	  }
@@ -23182,7 +23181,14 @@
 	        name: this.props.name
 	      };
 	
+	      var theme = {
+	        suggestionFocused: {
+	          backgroundColor: 'yellow'
+	        }
+	      };
+	
 	      return _react2.default.createElement(_reactAutosuggest2.default, {
+	        theme: theme,
 	        suggestions: suggestions,
 	        onSuggestionsFetchRequested: this.onSuggestionsFetchRequested,
 	        onSuggestionsClearRequested: this.onSuggestionsClearRequested,
@@ -26969,7 +26975,8 @@
 	exports.default = Item;
 
 /***/ },
-/* 249 */
+/* 249 */,
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26981,7 +26988,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _googleMapsReact = __webpack_require__(250);
+	var _googleMapsReact = __webpack_require__(251);
 	
 	var _react = __webpack_require__(1);
 	
@@ -27009,7 +27016,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).call(this, props));
 	
-	    _this.fetchPlaces = function (mapProps, map) {
+	    _this.drawPolyline = function (mapProps, map) {
 	      var google = _this.props.google;
 	
 	
@@ -27027,13 +27034,17 @@
 	    return _this;
 	  }
 	
+	  // get the flight plan coordinates, aka start and end point of polyline
+	  // ideally I would have liked to have the whole airport object passed down to this component from App as props so I wouldn't have to make a new post request, but couldn't figure out how to do that and have the auto suggest work nicely
+	
+	
 	  _createClass(Container, [{
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
 	      var A = nextProps.airportA;
 	      var B = nextProps.airportB;
-	      var aObj = void 0;
-	      var bObj = void 0;
+	      var aObj = void 0,
+	          bObj = void 0;
 	      if (A && B) {
 	        _axios2.default.post('/api/airport', {
 	          name: A
@@ -27046,7 +27057,6 @@
 	        }).then(function (res) {
 	          bObj = res.data;
 	        }).then(function () {
-	          console.log(aObj, bObj);
 	          flightPlanCoordinates.push({ lat: aObj.lat, lng: aObj.lng }, { lat: bObj.lat, lng: bObj.lng });
 	        });
 	      }
@@ -27054,7 +27064,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_googleMapsReact.Map, { google: this.props.google, onClick: this.fetchPlaces, zoom: 4, center: { lat: 39.833, lng: -98.583 } });
+	      return _react2.default.createElement(_googleMapsReact.Map, { google: this.props.google, onClick: this.drawPolyline, zoom: 4, center: { lat: 39.833, lng: -98.583 } });
 	    }
 	  }]);
 	
@@ -27066,12 +27076,12 @@
 	})(Container);
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(251), __webpack_require__(254), __webpack_require__(256), __webpack_require__(1), __webpack_require__(32), __webpack_require__(255), __webpack_require__(261), __webpack_require__(238)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(252), __webpack_require__(255), __webpack_require__(257), __webpack_require__(1), __webpack_require__(32), __webpack_require__(256), __webpack_require__(262), __webpack_require__(238)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if (typeof exports !== "undefined") {
 	    factory(exports, require('./GoogleApiComponent'), require('./components/Marker'), require('./components/InfoWindow'), require('react'), require('react-dom'), require('./lib/String'), require('./lib/cancelablePromise'), require('invariant'));
 	  } else {
@@ -27473,12 +27483,12 @@
 	});
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1), __webpack_require__(32), __webpack_require__(252), __webpack_require__(253)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1), __webpack_require__(32), __webpack_require__(253), __webpack_require__(254)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(exports, require('react'), require('react-dom'), require('./lib/ScriptCache'), require('./lib/GoogleApi'));
 	    } else {
@@ -27629,7 +27639,7 @@
 	});
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
@@ -27777,7 +27787,7 @@
 	});
 
 /***/ },
-/* 253 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
@@ -27858,12 +27868,12 @@
 	});
 
 /***/ },
-/* 254 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1), __webpack_require__(255)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1), __webpack_require__(256)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if (typeof exports !== "undefined") {
 	    factory(exports, require('react'), require('../lib/String'));
 	  } else {
@@ -28061,7 +28071,7 @@
 	});
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
@@ -28090,12 +28100,12 @@
 	});
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1), __webpack_require__(32), __webpack_require__(257)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1), __webpack_require__(32), __webpack_require__(258)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if (typeof exports !== "undefined") {
 	    factory(exports, require('react'), require('react-dom'), require('react-dom/server'));
 	  } else {
@@ -28297,16 +28307,16 @@
 	});
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(258);
+	module.exports = __webpack_require__(259);
 
 
 /***/ },
-/* 258 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -28322,7 +28332,7 @@
 	'use strict';
 	
 	var ReactDefaultInjection = __webpack_require__(38);
-	var ReactServerRendering = __webpack_require__(259);
+	var ReactServerRendering = __webpack_require__(260);
 	var ReactVersion = __webpack_require__(171);
 	
 	ReactDefaultInjection.inject();
@@ -28336,7 +28346,7 @@
 	module.exports = ReactDOMServer;
 
 /***/ },
-/* 259 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -28358,7 +28368,7 @@
 	var ReactInstrumentation = __webpack_require__(62);
 	var ReactMarkupChecksum = __webpack_require__(169);
 	var ReactReconciler = __webpack_require__(59);
-	var ReactServerBatchingStrategy = __webpack_require__(260);
+	var ReactServerBatchingStrategy = __webpack_require__(261);
 	var ReactServerRenderingTransaction = __webpack_require__(133);
 	var ReactUpdates = __webpack_require__(56);
 	
@@ -28431,7 +28441,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports) {
 
 	/**
@@ -28457,7 +28467,7 @@
 	module.exports = ReactServerBatchingStrategy;
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {

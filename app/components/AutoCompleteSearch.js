@@ -72,8 +72,15 @@ export default class AutoCompleteSearch extends Component {
       name: this.props.name
     };
 
+    const theme = {
+      suggestionFocused: {
+        backgroundColor: 'yellow'
+      }
+    }
+
     return (
       <Autosuggest
+        theme={theme}
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
