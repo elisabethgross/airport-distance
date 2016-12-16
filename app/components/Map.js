@@ -28,7 +28,7 @@ export class Container extends Component {
       }).then(res => {
         bObj = res.data
       }).then(() => {
-        flightPlanCoordinates.push({lat: aObj.lat, lng: aObj.lng}, {lat: bObj.lat, lng: bObj.lng})
+        flightPlanCoordinates = [{lat: aObj.lat, lng: aObj.lng}, {lat: bObj.lat, lng: bObj.lng}];
       });
     }
   }
@@ -36,15 +36,37 @@ export class Container extends Component {
   drawPolyline = (mapProps, map) => {
     const {google} = this.props;
 
+    const lineSymbol = {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 8,
+      strokeColor: '#393'
+    };
+
     const flightPath = new google.maps.Polyline({
       path: flightPlanCoordinates,
+      icons: [{
+        icon: lineSymbol,
+        offset: '100%'
+      }],
       geodesic: true,
       strokeColor: '#FF0000',
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
 
+    const animateCircle = function (line) {
+      var count = 0;
+      window.setInterval(function() {
+        count = (count + 1) % 200;
+
+        var icons = flightPath.get('icons');
+        icons[0].offset = (count / 2) + '%';
+        flightPath.set('icons', icons);
+      }, 20);
+    }
+
     flightPath.setMap(map);
+    animateCircle(flightPath);
   }
 
   render() {

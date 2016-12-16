@@ -21529,8 +21529,8 @@
 	
 	    _this.state = {
 	      distance: 0,
-	      airportACode: null,
-	      airportBCode: null
+	      airportACode: '----------------',
+	      airportBCode: '----------------'
 	    };
 	    return _this;
 	  }
@@ -21544,6 +21544,11 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Search for an airport by name, city, or IATA code'
+	        ),
+	        _react2.default.createElement(
 	          'form',
 	          { onSubmit: this.handleSubmit },
 	          _react2.default.createElement(_AutoCompleteSearch2.default, { name: 'airportA', placeholder: 'Type airportA' }),
@@ -21553,8 +21558,26 @@
 	        _react2.default.createElement(
 	          'h1',
 	          null,
+	          'The distance between ',
+	          _react2.default.createElement(
+	            'em',
+	            null,
+	            this.state.airportACode
+	          ),
+	          ' and ',
+	          _react2.default.createElement(
+	            'em',
+	            null,
+	            this.state.airportBCode
+	          ),
+	          ' is ',
 	          this.state.distance,
 	          ' miles'
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Click the map to see the flight path!'
 	        ),
 	        _react2.default.createElement(_Map2.default, { airportA: this.state.airportACode, airportB: this.state.airportBCode })
 	      );
@@ -27020,15 +27043,37 @@
 	      var google = _this.props.google;
 	
 	
+	      var lineSymbol = {
+	        path: google.maps.SymbolPath.CIRCLE,
+	        scale: 8,
+	        strokeColor: '#393'
+	      };
+	
 	      var flightPath = new google.maps.Polyline({
 	        path: flightPlanCoordinates,
+	        icons: [{
+	          icon: lineSymbol,
+	          offset: '100%'
+	        }],
 	        geodesic: true,
 	        strokeColor: '#FF0000',
 	        strokeOpacity: 1.0,
 	        strokeWeight: 2
 	      });
 	
+	      var animateCircle = function animateCircle(line) {
+	        var count = 0;
+	        window.setInterval(function () {
+	          count = (count + 1) % 200;
+	
+	          var icons = flightPath.get('icons');
+	          icons[0].offset = count / 2 + '%';
+	          flightPath.set('icons', icons);
+	        }, 20);
+	      };
+	
 	      flightPath.setMap(map);
+	      animateCircle(flightPath);
 	    };
 	
 	    return _this;
@@ -27057,7 +27102,7 @@
 	        }).then(function (res) {
 	          bObj = res.data;
 	        }).then(function () {
-	          flightPlanCoordinates.push({ lat: aObj.lat, lng: aObj.lng }, { lat: bObj.lat, lng: bObj.lng });
+	          flightPlanCoordinates = [{ lat: aObj.lat, lng: aObj.lng }, { lat: bObj.lat, lng: bObj.lng }];
 	        });
 	      }
 	    }
