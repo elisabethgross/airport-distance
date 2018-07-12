@@ -1,6 +1,7 @@
 'use strict';
 
 var webpack = require('webpack');
+require('dotenv').config()
 
 module.exports = {
   entry: './app/main.jsx',
@@ -13,6 +14,13 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'MAPS_KEY': JSON.stringify(process.env.MAPS_KEY)
+      }
+    })
+  ],
   module: {
     loaders: [
       {

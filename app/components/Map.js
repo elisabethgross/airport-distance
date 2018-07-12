@@ -28,13 +28,13 @@ export class Container extends Component {
       }).then(res => {
         bObj = res.data
       }).then(() => {
-        flightPlanCoordinates = [{lat: aObj.lat, lng: aObj.lng}, {lat: bObj.lat, lng: bObj.lng}];
+        flightPlanCoordinates = [{ lat: aObj.lat, lng: aObj.lng }, { lat: bObj.lat, lng: bObj.lng }];
       });
     }
   }
 
   drawPolyline = (mapProps, map) => {
-    const {google} = this.props;
+    const { google } = this.props;
 
     const lineSymbol = {
       path: google.maps.SymbolPath.CIRCLE,
@@ -56,7 +56,7 @@ export class Container extends Component {
 
     const animateCircle = function (line) {
       var count = 0;
-      window.setInterval(function() {
+      window.setInterval(function () {
         count = (count + 1) % 200;
 
         var icons = flightPath.get('icons');
@@ -77,5 +77,5 @@ export class Container extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyANYwfPtCwKAE5YoOumESeH5pAf8UXQ3WA'
+  apiKey: process.env.MAPS_KEY
 })(Container);
